@@ -5,9 +5,116 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>HTML 5 Boilerplate</title>
-    <link rel="stylesheet" href="style.css">
+    
+    <link rel="stylesheet" href="scss/main.scss">
+    
+    
   </head>
   <body>
-	<script src="index.js"></script>
+
+    <!--Nav bar html-->
+    <div class="tabs">
+      <div class="tabs__head">
+        <div class="tabs__toggle is-active">
+          <span class="tabs__name">Pomodoro</span>
+        </div>
+        <div class="tabs__toggle">
+          <span class="tabs__name">Tasklist</span>
+        </div>
+        <div class="tabs__toggle">
+          <span class="tabs__name">Music</span>
+        </div>
+        <div class="tabs__toggle">
+          <span class="tabs__name">Dictionary</span>
+        </div>
+      </div>
+      <!--Pomodoro html-->
+      <div class="tabs__body">
+        <div class="tabs__content is-active">
+          <p id="work" class="label">Work</p>
+          <p id="break" class="label">Cycles</p>
+          <p id="cycles" class="label">Break</p>
+          
+          <div id="work-timer" class="timer"> <p class="tabs__text" id="work_minutes">25</p> <p class="semicolon">:</p><p id="work_seconds">00</p> </div>
+          <p id="counter" class="timer">0</p>
+
+      <!--Break Timer-->
+      <div id="break-timer" class="timer">
+          <p id="break_minutes">5</p><p class="semicolon">:</p><p id="break_seconds">00</p>
+      </div>
+          <button id="start" class="btn">Start</button>
+      <button id="stop" class="btn">Pause</button>
+      <button id="reset" class="btn">Reset</button>
+     <!--Tasklist html-->
+      </div>
+        <div class="tabs__content">
+          <div id="task-grid"><form id="taskform">
+            <label for="task">Task:</label>
+            <input type="text" name="task" id="taskInput">
+        
+            <br>
+          <!-- Date input -->
+            <label for="dueDate">Due Date: </label>
+            <input type="date" name="dueDate" id="dueDateInput">
+            <br>
+          <!-- Time input -->
+          <label for="completionTime">Completion Time: </label>
+            <input type="time" name="completionTime" id="completionTimeInput">
+        
+            <br>
+        
+          <label for="estimatedTime">Estimated completion time (in mins):</label>
+          <input type="number" name="estimatedTime" id="estimatedTimeInput">
+          <!-- Priority -->
+          <br>
+        
+          <label for="priority">Task Priority:</label>
+          <select name="prority" id="priorityInput">
+            <option value="">Select one</option>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+          </select>
+        
+          <br>
+        
+            <button type="submit">Submit</button>
+          </form>
+          <ul id="tasklist">
+            <p id="emptyList"> You have not added any tasks yet.</p>
+          </ul></div>
+        </div>
+        <!--Music player html-->
+        <div class="tabs__content">
+          <h2 class="tabs__title">Music Player</h2>
+          <p class="tabs__text">Lorem ipsum dolor sit, amet consecteturlestias eius porro, tempore molestiae ipsam sit quam aut officia, autem, perferendis?</p>
+        </div>
+        <!--Dictionary html-->
+        <div class="tabs__content">
+          <audio id="sound"></audio>
+          <div class="container">
+            <div class="search-box">
+                <input
+                    type="text"
+                    placeholder="Search for a word.."
+                    id="input-word"
+                />
+                <button id="search-btn">Search</button>
+            </div>
+            <div class="result" id="result"></div>
+        </div>
+              
+            </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  <script type="module" src="script.js"></script>
+  <script  src="tasklist.js"></script>
+  <script  src="timer.js"></script>
+  <script  src="navigation.js"></script>
+  <script  src="dictionary.js"></script>
   </body>
 </html>
