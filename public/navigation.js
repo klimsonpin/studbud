@@ -13,3 +13,6 @@ tab.addEventListener('click', () => {
     tabs[index].classList.add('is-active');
 });
 });
+
+
+

@@ -3,7 +3,8 @@
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
     grid-template-areas: "taskform tasklist";
-    margin-top: 100px;
+    margin-top: 10px;
+    margin-bottom: 30px;
     
 }
 
@@ -11,13 +12,51 @@
     grid-area: taskform;
     max-width: 300px;
     margin: 0 auto;
+    
 
     label {
         display: block;
         width: 100%;
+        font-weight: bold;
     }
+}
+
+#taskform input {
+margin-top: 10px;
+background-color: #374151;
+color:white;
+outline: none;
+padding: 10px;
+border-radius: 3px;
+border: none;
+}
+
+#taskform label {
+    margin-top: 10px;
+    color: white;
 }
 
 #tasklist {
     grid-area: tasklist;
+}
+
+.submit-btn {
+    margin-top: 20px;
+    padding: 10px 24px;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+  font-weight: 500;
+    font-size: 16px;
+    background-color: #111827;
+    color: white;
+    text-decoration: none;
+}
+
+.submit-btn:hover {
+    background-color: #374151;
+}
+
+ul {
+    color: white;
 }

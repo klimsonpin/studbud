@@ -1,4 +1,5 @@
 .search-box {
+    
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -8,8 +9,10 @@
     width: 70%;
     border: none;
     outline: none;
-    border-bottom: 3px solid lightgrey;
     font-size: 16px;
+    border-radius: 20px;
+    background-color: #111827;
+    color: white;
 }
 .search-box button {
     padding: 15px 0;
@@ -31,7 +34,7 @@
 }
 .result h3 {
     font-size: 30px;
-    color: black;
+    color: white;
 }
 .result .word {
     display: flex;
@@ -40,7 +43,7 @@
 }
 .result button {
     background-color: transparent;
-    color: #ae9cff;
+    color: white;
     border: none;
     outline: none;
     font-size: 18px;
@@ -48,17 +51,17 @@
 .result .details {
     display: flex;
     gap: 10px;
-    color: #b3b6d4;
+    color: white;
     margin: 5px 0 20px 0;
     font-size: 14px;
 }
 .word-meaning {
-    color: #575a7b;
+    color: white;
 }
 .word-example {
-    color: #575a7b;
+    color: white;
     font-style: italic;
-    border-left: 5px solid #2a61d8;
+    border-left: 5px solid white;
     padding-left: 20px;
     margin-top: 30px;
 }
@@ -66,3 +69,8 @@
     margin-top: 80px;
     text-align: center;
 }
+
+::placeholder {
+    color: white;
+    
+  }
