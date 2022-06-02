@@ -16,10 +16,10 @@
     <div class="tabs">
       <div class="tabs__head">
         <div class="tabs__toggle is-active">
-          <span class="tabs__name">Pomodoro</span>
+          <span class="tabs__name">Timer</span>
         </div>
         <div class="tabs__toggle">
-          <span class="tabs__name">Tasklist + Kanban</span>
+          <span class="tabs__name">Kanban Board</span>
         </div>
         <div class="tabs__toggle">
           <span class="tabs__name">Music</span>
@@ -28,7 +28,7 @@
           <span class="tabs__name">Dictionary</span>
         </div>
       </div>
-  <!--Dark and light mode-->
+ 
       
 
 
@@ -37,6 +37,7 @@
       <div class="tabs__body">
 
         <div class="tabs__content is-active">
+          <h2>Pomodoro</h2>
           <p id="work" class="label">Work</p>
           <p id="break" class="label">Cycles</p>
           <p id="cycles" class="label">Break</p>
@@ -48,15 +49,34 @@
       <div id="break-timer" class="timer">
           <p id="break_minutes">5</p><p class="semicolon">:</p><p id="break_seconds">00</p>
       </div>
-          <button id="start" class="btn">Start</button>
-      <button id="stop" class="btn">Pause</button>
-      <button id="reset" class="btn">Reset</button>
-     <!--Tasklist html-->
+      <div class="pomo-buttons">
+      <button id="start_stop"  class="btn_stop">Start</button> <button id="reset"  class="btn_stop" onclick="reset()">Reset</button>
+    </div>
+      <div class="stopwatch">
+        <div class="line"></div>
+        <!--Stopwatch -->
+       <h2>Stopwatch</h2>
+        <div id="display">
+            00:00:00
+        </div>
+
+        <div class="buttons">
+            <button id="startStop" onclick="startStop()" class="btn_stop">Start</button> <button id="reset"  class="btn_stop" onclick="reset()">Reset</button>
+        </div>
+
+    </div>
+
+
+     
       </div>
+
+
+ <!--Tasklist html-->
         <div class="tabs__content">
           <div class="carousel">
             <div class="carousel__item">
               <div id="task-grid"><form id="taskform">
+                <h2>Tasklist</h2>
                       <label for="task">Task:</label>
                       <input type="text" name="task" id="taskInput">
                   
@@ -86,25 +106,50 @@
                   
                     <br>
                   
-                      <button class="submit-btn">Submit</button>
+                    <button id="submit" type="submit">Submit</button>
                     </form>
-                    <ul id="tasklist">
+                    
+                    <ul id="tasklist"> </ul>
+                    <p id="nav-info">Swipe right for Kanban board</p>
                     </div>
                     
+
+                    <!--Kanban board-->
                               </div>
-                      <div class="carousel__item">get fucked</div>
+                      <div class="carousel__item">
+                        <div class="todo-container">
+                          <div class="status" id="no_status">
+                            <h1>Tasks</h1>
+                            
+                          
+                          </div>
+                          <div class="status">
+                            <h1>Not Started</h1>
+                          </div>
+                          <div class="status">
+                            <h1>In Progress</h1>
+                          </div>
+                          <div class="status">
+                            <h1>Completed</h1>
+                          </div>
+                        </div>
+
+
+
                       </div>
                       
-                    </ul></div>
+
+                      </div>
+                      
+                    </div>
             
-                      <div class="carousel__item">get fucked</div>
+                      
                       
                       
                   
         <!--Music player html-->
         <div class="tabs__content">
-          <h2 class="tabs__title">Music Player</h2>
-          <p class="tabs__text"></p>
+          
         </div>
         <!--Dictionary html-->
         <div class="tabs__content">
@@ -134,5 +179,8 @@
   <script  src="navigation.js"></script>
   <script  src="dictionary.js"></script>
   <script  src="carousel.js"></script>
+  <script  src="kanban.js"></script>
+  <script  src="stopwatch.js"></script>
+  <script  src="musicplayer.js"></script>
   </body>
 </html>
