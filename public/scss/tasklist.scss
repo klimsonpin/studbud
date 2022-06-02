@@ -37,10 +37,11 @@ border: none;
 }
 
 #tasklist {
-    grid-area: tasklist;
+  margin-top: 20px;
+
 }
 
-.submit-btn {
+#submit {
     margin-top: 20px;
     padding: 10px 24px;
     border: none;
@@ -53,10 +54,79 @@ border: none;
     text-decoration: none;
 }
 
-.submit-btn:hover {
+#submit:hover {
     background-color: #374151;
 }
 
 ul {
     color: white;
 }
+
+
+
+
+  .todo-container {
+   height: 500px;
+    
+    display: flex;
+  }
+  
+  .status {
+    width: 25%;
+    background-color: #111827;
+    position: relative;
+    padding: 60px 1rem 0.5rem;
+  }
+  
+
+  
+  .status h1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #374151;
+    color: #f3f3f3;
+    margin: 0;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    font-size:14px;
+    font-family: Montserrat;
+  }
+  
+
+  
+  .todo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    width: 100px;
+    color: black;
+    background-color: #fff;
+    box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px,
+      rgba(15, 15, 15, 0.1) 0px 2px 4px;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    font-size: 12px;
+    margin: 0.5rem 0;
+    font-family: Montserrat;
+  }
+  
+  .todo .close {
+    position: absolute;
+    right: 1rem;
+    top: 0rem;
+    font-size: 2rem;
+    color: #ccc;
+    cursor: pointer;
+  }
+  
+  .todo .close:hover {
+    color: #343444;
+  }
+  
+
+  #nav-info {
+      text-align: center;
+      margin-top: 40px;
+  }

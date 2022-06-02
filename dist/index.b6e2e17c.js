@@ -464,7 +464,7 @@ document.querySelectorAll(".carousel").forEach((carousel)=>{
     const buttons = carousel.querySelectorAll(".carousel__button");
     buttons.forEach((button, i)=>{
         button.addEventListener("click", ()=>{
-            // un-select all the items
+            // When the buttons are clicked it unselects all these items and then replaces it with the next slide on the carousel.
             items.forEach((item)=>item.classList.remove("carousel__item--selected")
             );
             buttons.forEach((button1)=>button1.classList.remove("carousel__button--selected")
@@ -473,7 +473,6 @@ document.querySelectorAll(".carousel").forEach((carousel)=>{
             button.classList.add("carousel__button--selected");
         });
     });
-    // Select the first item on page load
     items[0].classList.add("carousel__item--selected");
     buttons[0].classList.add("carousel__button--selected");
 });

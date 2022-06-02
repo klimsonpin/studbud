@@ -7,7 +7,9 @@
 }
 
 
-
+h2 {
+  color: white;
+}
 
 .label {
     align-self: center;
@@ -78,4 +80,58 @@ p {
 
 .btn:hover {
   background-color: #374151;
+}
+
+.btn_stop {
+  text-align: center;
+   margin-bottom: 40px;
+    margin-left: 65px;
+   margin-top: 30px;
+    padding: 10px 24px;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+  font-weight: 500;
+    font-size: 16px;
+    color: white;
+    background-color: #111827;
+    text-decoration: none;
+}
+
+.stopwatch {
+  margin-top: 40px;
+}
+
+
+#display {
+ text-align: center;
+  color:white;
+  font-size: 30px;
+  margin-top: 30px;
+}
+
+
+.btn_stop {
+  padding: 10px 24px;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+  font-weight: 500;
+    font-size: 16px;
+    color: white;
+    background-color: #111827;
+    text-decoration: none;
+    margin-left: 10px;
+    text-align: center;
+}
+
+.line {
+  height: 3px;
+  background-color: white;
+  margin-top: -40px;
+  margin-bottom: 40px;
+}
+
+.pomo-buttons {
+  text-align:center;
 }

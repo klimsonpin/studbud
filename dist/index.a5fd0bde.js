@@ -455,7 +455,7 @@ function hmrAcceptRun(bundle, id) {
 }
 
 },{}]},["eTvlG"], null, "parcelRequire60da")
-var start = document.getElementById('start');
+var start = document.getElementById('start_stop');
 var stop = document.getElementById('stop');
 var reset = document.getElementById('reset');
 var workMinutes = document.getElementById('work_minutes');
@@ -463,9 +463,16 @@ var workSeconds = document.getElementById('work_seconds');
 var breakMinutes = document.getElementById('break_minutes');
 var breakSeconds = document.getElementById('break_seconds');
 var startTimer;
+//When the start button is pressed the function checks if startTimer = undefined and if it is then the timer will start. If the timer is running however then an alert will pop up notifying the user.
 start.addEventListener('click', function() {
-    if (startTimer === undefined) startTimer = setInterval(timer, 1000);
-    else alert("Timer is already running");
+    if (startTimer === undefined) {
+        startTimer = setInterval(timer, 1000);
+        document.getElementById("start_stop").innerHTML = "Stop";
+    } else {
+        stopInterval();
+        startTimer = undefined;
+        document.getElementById("start_stop").innerHTML = "Start";
+    }
 });
 //When the reset button is pressed the innerText of workMinutes, workSeconds, breakMinutes, and breakSeconds change back to 25:00 and 5:00
 reset.addEventListener('click', function() {
@@ -473,11 +480,13 @@ reset.addEventListener('click', function() {
     workSeconds.innerText = "00";
     breakMinutes.innerText = 5;
     breakSeconds.innerText = "00";
+    document.getElementById("start_stop").innerHTML = "Start";
     //Counter goes back to 0
     document.getElementById('counter').innerText = 0;
     stopInterval();
     startTimer = undefined;
 });
+//The stop button sets the timer back to undefined which allows the start button to check if it is undefined so that it can start the timer back up again.
 stop.addEventListener('click', function() {
     stopInterval();
     startTimer = undefined;
