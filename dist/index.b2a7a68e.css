@@ -128,7 +128,7 @@ body {
   border-radius: 30px;
   padding: 10px 5px;
   margin-bottom: 20px;
-  color: green;
+  color: white;
 }
 .tabs__toggle {
   margin: 0 5px;
@@ -395,5 +395,8 @@ p {
 .kanban {
   height: 400px;
   background-color: white;
+}
+.audio-buttons {
+  margin-top: 20px;
 }
 /*# sourceMappingURL=index.b2a7a68e.css.map */
