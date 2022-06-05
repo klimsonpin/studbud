@@ -61,6 +61,8 @@ const todo_submit = document.getElementById("submit");
 todo_submit.addEventListener("click", createTodo);
 
 
+
+//This function creates a to-do box that creates a div and inputs the task 
 function createTodo() {
   const todo_div = document.createElement("div");
   const input_val = document.getElementById("taskInput").value;
