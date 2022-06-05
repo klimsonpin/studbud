@@ -27,7 +27,11 @@ btn.addEventListener("click", () => {
                 </p>`;
             sound.setAttribute("src", `https:${data[0].phonetics[0].audio}`);
         })
+        //The .catch contains what to do when the user inputs a word that can't be found in the dictionaryAPI.
+        //If the word isn't found the result will return the following <h3> message to the user.
         .catch(() => {
-            result.innerHTML = `<h3 class="error">No results found for <h3>${inpWord}</h3></h3>`;
+            result.innerHTML = `<h3 class="error">No results found for ${inpWord}</h3>`;
         });
 });
+
+//https://www.youtube.com/watch?v=PUkgK7TI0x0&ab_channel=CodingArtist  this tutorial helped me with the dictionary api implementation.

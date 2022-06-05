@@ -1,191 +1,134 @@
-const playBtn = document.querySelector(".play"),
-    skipForward = document.querySelector(".skip-forward"),
-    skipBack = document.querySelector(".skip-back"),
+let now_playing = document.querySelector(".now-playing");
+let track_art = document.querySelector(".track-art");
+let track_name = document.querySelector(".track-name");
+let track_artist = document.querySelector(".track-artist");
 
-    progressBarContainer = document.querySelector('.progress'),
-    progressBar = document.querySelector('.progress-bar'),
-    progressHead = document.querySelector('.progress-head'),
+let playpause_btn = document.querySelector(".playpause-track");
+let next_btn = document.querySelector(".next-track");
+let prev_btn = document.querySelector(".prev-track");
 
-    currentTimeHtml = document.querySelector(".current-time"),
-    durationHtml = document.querySelector(".duration"),
+let seek_slider = document.querySelector(".seek_slider");
+let volume_slider = document.querySelector(".volume_slider");
+let curr_time = document.querySelector(".current-time");
+let total_duration = document.querySelector(".total-duration");
 
-    playIcon = document.querySelector('.fa-play'),
-    img = document.querySelector('.img'),
-    title = document.querySelector(".audio-title"),
-    singer = document.querySelector(".audio-singer");
+let track_index = 0;
+let isPlaying = false;
+let updateTimer;
 
-this.tracks = [
-    {
-        name: "Tech House vibes",
-        artist: "Artist 1",
-        cover: "https://images.unsplash.com/photo-1494232410401-ad00d5433cfa?crop=entropy&cs=tinysrgb&fm=jpg",
-        source: "https://assets.mixkit.co/music/download/mixkit-tech-house-vibes-130.mp3",
-    },
-    {
-        name: "Hip Hop 02",
-        artist: "Artist 2",
-        cover: "https://images.unsplash.com/photo-1485579149621-3123dd979885?crop=entropy&cs=tinysrgb&fm=jpg",
-        source: "https://assets.mixkit.co/music/download/mixkit-hip-hop-02-738.mp3",
-    },
-    {
-        name: "Dreaming Big",
-        artist: "Artist 3",
-        cover: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?crop=entropy&cs=tinysrgb&fm=jpg",
-        source: "https://assets.mixkit.co/music/download/mixkit-dreaming-big-31.mp3",
-    },
+// Create new audio element
+let curr_track = document.createElement('audio');
+
+// Define the tracks that have to be played
+let track_list = [
+  {
+    name: "Night Owl",
+    artist: "Broke For Free",
+    image: "https://images.pexels.com/photos/2264753/pexels-photo-2264753.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=250&w=250",
+    path: "music/hey.mp3"
+  },
+  {
+    name: "Enthusiast",
+    artist: "Tours",
+    image: "https://images.pexels.com/photos/3100835/pexels-photo-3100835.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=250&w=250",
+    path: "music/summer.mp3"
+  },
+  {
+    name: "Shipping Lanes",
+    artist: "Chad Crouch",
+    image: "https://images.pexels.com/photos/1717969/pexels-photo-1717969.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=250&w=250",
+    path: "music/ukulele.mp3",
+  },
 ];
 
-// Initial state values
-let audio = null,
-    barWidth = null,
-    duration = null,
-    currentTime = null,
-    isTimerPlaying = false,
-    currentTrackIndex = 0,
-    currentTrack = tracks[0];
-
-// Set initial state values
-audio = new Audio();
-audio.src = currentTrack.source;
-img.src = currentTrack.cover;
-title.innerText = currentTrack.name;
-singer.innerText = currentTrack.artist;
-
-playBtn.addEventListener('click', () => {
-    if (audio.paused) {
-        audio.play();
-        isTimerPlaying = true;
-    } else {
-        audio.pause();
-        isTimerPlaying = false;
-    }
-});
-
-progressBarContainer.addEventListener('click', (x) => {
-    let maxduration = audio.duration;
-    let position = x.pageX - progressBarContainer.offsetLeft;
-    let percentage = (100 * position) / progressBarContainer.offsetWidth;
-    if (percentage > 100) percentage = 100;
-    if (percentage < 0) percentage = 0;
-    barWidth = percentage + "%";
-
-    audio.currentTime = (maxduration * percentage) / 100;
-    progressBar.style.width = `${barWidth}%`;
-    progressHead.style.setProperty("left", `${barWidth}%`);
-    img.src = currentTrack.cover;
-});
 
 
-skipForward.addEventListener('click', () => {
+function loadTrack(track_index) {
+  clearInterval(updateTimer);
+  resetValues();
+  curr_track.src = track_list[track_index].path;
+  curr_track.load();
 
-    if (currentTrackIndex < tracks.length - 1) {
-        currentTrackIndex++;
-    } else {
-        currentTrackIndex = 0;
-    }
+  track_art.style.backgroundImage = "url(" + track_list[track_index].image + ")";
+  track_name.textContent = track_list[track_index].name;
+  track_artist.textContent = track_list[track_index].artist;
+  now_playing.textContent = "PLAYING " + (track_index + 1) + " OF " + track_list.length;
 
-    currentTrack = tracks[currentTrackIndex];
+  updateTimer = setInterval(seekUpdate, 1000);
+  curr_track.addEventListener("ended", nextTrack);
+  random_bg_color();
+}
 
-    audio.src = currentTrack.source;
-    img.src = currentTrack.cover;
-    title.innerText = currentTrack.name;
-    singer.innerText = currentTrack.artist;
+function resetValues() {
+  curr_time.textContent = "00:00";
+  total_duration.textContent = "00:00";
+  seek_slider.value = 0;
+}
 
-    barWidth = 0;
-    progressBar.style.width = `${barWidth}%`;
-    progressHead.style.setProperty("left", `${barWidth}%`);
-    currentTimeHtml.innerText = `0:00`;
-    durationHtml.innerText = `0:00`;
+// Load the first track in the tracklist
+loadTrack(track_index);
 
-    audio.currentTime = 0;
-    audio.src = currentTrack.source;
+function playpauseTrack() {
+  if (!isPlaying) playTrack();
+  else pauseTrack();
+}
 
-    setTimeout(() => {
-        if (isTimerPlaying) {
-            audio.play();
-        } else {
-            audio.pause();
-        }
-    }, 300);
-});
+function playTrack() {
+  curr_track.play();
+  isPlaying = true;
+  playpause_btn.innerHTML = '<i class="fa fa-pause-circle fa-5x"></i>';
+}
 
-skipBack.addEventListener('click', () => {
-    if (currentTrackIndex > 0) {
-        currentTrackIndex--;
-    } else {
-        this.currentTrackIndex = this.tracks.length - 1;
-    }
-    currentTrack = tracks[currentTrackIndex];
+function pauseTrack() {
+  curr_track.pause();
+  isPlaying = false;
+  playpause_btn.innerHTML = '<i class="fa fa-play-circle fa-5x"></i>';;
+}
 
-    audio.src = currentTrack.source;
-    img.src = currentTrack.cover;
-    title.innerText = currentTrack.name;
-    singer.innerText = currentTrack.artist;
+function nextTrack() {
+  if (track_index < track_list.length - 1)
+    track_index += 1;
+  else track_index = 0;
+  loadTrack(track_index);
+  playTrack();
+}
 
-    barWidth = 0;
-    progressBar.style.width = `${barWidth}%`;
-    progressHead.style.setProperty("left", `${barWidth}%`);
-    currentTimeHtml.innerText = `0:00`;
-    durationHtml.innerText = `0:00`;
+function prevTrack() {
+  if (track_index > 0)
+    track_index -= 1;
+  else track_index = track_list.length;
+  loadTrack(track_index);
+  playTrack();
+}
 
-    audio.currentTime = 0;
-    audio.src = currentTrack.source;
+function seekTo() {
+  let seekto = curr_track.duration * (seek_slider.value / 100);
+  curr_track.currentTime = seekto;
+}
 
-    setTimeout(() => {
-        if (isTimerPlaying) {
-            audio.play();
-        } else {
-            audio.pause();
-        }
-    }, 300);
-});
+function setVolume() {
+  curr_track.volume = volume_slider.value / 100;
+}
 
-audio.ontimeupdate = function () {
-    if (audio.duration) {
-        barWidth = (100 / audio.duration) * audio.currentTime;
+function seekUpdate() {
+  let seekPosition = 0;
 
-        let durmin = Math.floor(audio.duration / 60);
-        let dursec = Math.floor(audio.duration - durmin * 60);
-        let curmin = Math.floor(audio.currentTime / 60);
-        let cursec = Math.floor(audio.currentTime - curmin * 60);
+  if (!isNaN(curr_track.duration)) {
+    seekPosition = curr_track.currentTime * (100 / curr_track.duration);
 
-        if (durmin < 10) durmin = "0" + durmin;
+    seek_slider.value = seekPosition;
 
-        if (dursec < 10) dursec = "0" + dursec;
+    let currentMinutes = Math.floor(curr_track.currentTime / 60);
+    let currentSeconds = Math.floor(curr_track.currentTime - currentMinutes * 60);
+    let durationMinutes = Math.floor(curr_track.duration / 60);
+    let durationSeconds = Math.floor(curr_track.duration - durationMinutes * 60);
 
-        if (curmin < 10) curmin = "0" + curmin;
+    if (currentSeconds < 10) { currentSeconds = "0" + currentSeconds; }
+    if (durationSeconds < 10) { durationSeconds = "0" + durationSeconds; }
+    if (currentMinutes < 10) { currentMinutes = "0" + currentMinutes; }
+    if (durationMinutes < 10) { durationMinutes = "0" + durationMinutes; }
 
-        if (cursec < 10) cursec = "0" + cursec;
-
-        duration = durmin + ":" + dursec;
-        currentTime = curmin + ":" + cursec;
-
-        progressBar.style.width = `${barWidth}%`;
-        progressHead.style.setProperty("left", `${barWidth}%`)
-        currentTimeHtml.innerText = `${currentTime}`;
-        durationHtml.innerText = `${duration}`;
-
-        if (isTimerPlaying) {
-            playIcon.classList.remove('fa-play');
-            playIcon.classList.add('fa-pause');
-
-
-        } else {
-            playIcon.classList.add('fa-play');
-            playIcon.classList.remove('fa-pause');
-        }
-    }
-};
-
-audio.onended = function () { };
-
-// Animations
-TweenMax.from('.img', 4, { rotation: "+=360", transformOrigin: "50% 50%", ease: Linear.easeNone, repeat: -1 });
-gsap.from("body, h1, .audio-img, .audio-title, .audio-singer, .audio-btns", {
-    opacity: 0,
-    duration: 2,
-    delay: 1.5,
-    y: 25,
-    ease: "expo.out",
-    stagger: 0.2,
-});
+    curr_time.textContent = currentMinutes + ":" + currentSeconds;
+    total_duration.textContent = durationMinutes + ":" + durationSeconds;
+  }
+}

@@ -473,6 +473,7 @@ document.querySelectorAll(".carousel").forEach((carousel)=>{
             button.classList.add("carousel__button--selected");
         });
     });
+    //https://www.youtube.com/watch?v=XtFlpgaLbZ4&t=963s&ab_channel=dcode this tutorial helped with the implentation of the carousel feature.
     items[0].classList.add("carousel__item--selected");
     buttons[0].classList.add("carousel__button--selected");
 });

@@ -107,9 +107,10 @@ ul {
 body {
   display: flex;
   justify-content: center;
-  min-height: 100vh;
+  height: 100vh;
   font-family: Montserrat;
-  background: #374151;
+  background-image: url("sky.f9759230.jpg");
+  background-size: cover;
   transition: 0.5s;
 }
 .tabs {
@@ -127,7 +128,7 @@ body {
   border-radius: 30px;
   padding: 10px 5px;
   margin-bottom: 20px;
-  color: white;
+  color: green;
 }
 .tabs__toggle {
   margin: 0 5px;
@@ -319,7 +320,7 @@ p {
   position: relative;
 }
 .result h3 {
-  font-size: 30px;
+  font-size: 20px;
   color: white;
 }
 .result .word {

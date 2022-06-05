@@ -467,9 +467,11 @@ btn.addEventListener("click", ()=>{
         //Once the defintion is received the div class result inputs new html containing the word,meaning,details, and examples from the dictionaryAPI.
         result.innerHTML = `\n            <div class="word">\n                    <h3>${inpWord}</h3>\n                \n                </div>\n                <div class="details">\n                    <p>${data[0].meanings[0].partOfSpeech}</p>\n                    <p>/${data[0].phonetic}/</p>\n                </div>\n                <p class="word-meaning">\n                   ${data[0].meanings[0].definitions[0].definition}\n                </p>\n                <p class="word-example">\n                    ${data[0].meanings[0].definitions[0].example || ""}\n                </p>`;
         sound.setAttribute("src", `https:${data[0].phonetics[0].audio}`);
-    }).catch(()=>{
-        result.innerHTML = `<h3 class="error">No results found for <h3>${inpWord}</h3></h3>`;
+    })//The .catch contains what to do when the user inputs a word that can't be found in the dictionaryAPI.
+    //If the word isn't found the result will return the following <h3> message to the user.
+    .catch(()=>{
+        result.innerHTML = `<h3 class="error">No results found for ${inpWord}</h3>`;
     });
-});
+}); //https://www.youtube.com/watch?v=PUkgK7TI0x0&ab_channel=CodingArtist  this tutorial helped me with the dictionary api implementation.
 
 //# sourceMappingURL=index.a903ddef.js.map

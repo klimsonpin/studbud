@@ -7,6 +7,7 @@ todos.forEach((todo) => {
   todo.addEventListener("dragend", dragEnd);
 });
 
+//https://www.youtube.com/watch?v=jfYWwQrtzzY&ab_channel=WebDevSimplified this tutorial helped me with the drag and drop for the kanban board.
 function dragStart() {
   draggableTodo = this;
   setTimeout(() => {
