@@ -4,13 +4,13 @@ Design reiteration
 
 Old Design
 
-![](images/old-design1.png)
+![](../images/old-design1.png)
 
 The old design contains all the different tools on the web page and are opened and closed by the tabs in the nav bar. The problems that I came across with this design is that since all the different tools are on the same page at the same time it doesn&#39;t allow for much space for the Kanban board and task list.
 
 New Design
 
-![](images/New-design.png)
+![](../images/New-design.png)
 
 In the new design all the different tools can be accessed in the same box via tabs in the navigation bar. I made this change as it provides for a cleaner look whilst providing the same functionality as the old design and it also makes adjusting to smaller screen sizes easier since the box in the middle of the screen doesn&#39;t take up too much space. I kept the sky as the background as &quot;experiments have found that being exposed to natural environments improves working memory, cognitive flexibility and attentional control, while exposure to urban environments is linked to attention deficits&quot; (Schertz &amp; Berman, 2019). This will also ensure that the user will be more productive whilst using the studbud during their study sessions.
 
@@ -18,11 +18,11 @@ Kanban board changes
 
 Old design
 
-![](images/kanban-old.png)
+![](../images/kanban-old.png)
 
 The old Kanban board was very simple where the user inputs the tasks into one of the three boxes according to the status of the task.
 
-![](images/kanban-new.png)
+![](../images/kanban-new.png)
 
 New Design
 
@@ -32,11 +32,11 @@ Timer changes
 
 Old design
 
-![](images/timer-old.png)
+![](../images/timer-old.png)
 
 The old design only contained a pomodoro that contains a start button and three modes that the user can access from the tabs. The problem with this design is that once the work timer is over the user must start the break timer themselves and the timer doesn&#39;t have a counter feature which is useful for the user to know how many rounds they have done.
 
-![](images/timer-new.png)
+![](../images/timer-new.png)
 
 In this design I included a stopwatch as well as a counter function which shows how many cycles the user has done. The break timer also automatically starts once the work timer has finished. I also included a reset button so that the user can restart the counter which was a feature that was lacking in the first iteration.
 
