@@ -59,6 +59,7 @@ const todo_submit = document.getElementById("submit");
 
 todo_submit.addEventListener("click", createTodo);
 
+
 function createTodo() {
   const todo_div = document.createElement("div");
   const input_val = document.getElementById("taskInput").value;

@@ -457,21 +457,19 @@ function hmrAcceptRun(bundle, id) {
 },{}]},["gNFkh"], null, "parcelRequire60da")
 const url = "https://api.dictionaryapi.dev/api/v2/entries/en/";
 const result = document.getElementById("result");
-const sound = document.getElementById("sound");
 const btn = document.getElementById("search-btn");
+//The event listener checks for the input value then uses that value to fetch the definition from the dictionary API.
 btn.addEventListener("click", ()=>{
     let inpWord = document.getElementById("input-word").value;
     fetch(`${url}${inpWord}`).then((response)=>response.json()
     ).then((data)=>{
         console.log(data);
-        result.innerHTML = `\n            <div class="word">\n                    <h3>${inpWord}</h3>\n                    <button onclick="playSound()">\n                        <i class="fas fa-volume-up"></i>\n                    </button>\n                </div>\n                <div class="details">\n                    <p>${data[0].meanings[0].partOfSpeech}</p>\n                    <p>/${data[0].phonetic}/</p>\n                </div>\n                <p class="word-meaning">\n                   ${data[0].meanings[0].definitions[0].definition}\n                </p>\n                <p class="word-example">\n                    ${data[0].meanings[0].definitions[0].example || ""}\n                </p>`;
+        //Once the defintion is received the div class result inputs new html containing the word,meaning,details, and examples from the dictionaryAPI.
+        result.innerHTML = `\n            <div class="word">\n                    <h3>${inpWord}</h3>\n                \n                </div>\n                <div class="details">\n                    <p>${data[0].meanings[0].partOfSpeech}</p>\n                    <p>/${data[0].phonetic}/</p>\n                </div>\n                <p class="word-meaning">\n                   ${data[0].meanings[0].definitions[0].definition}\n                </p>\n                <p class="word-example">\n                    ${data[0].meanings[0].definitions[0].example || ""}\n                </p>`;
         sound.setAttribute("src", `https:${data[0].phonetics[0].audio}`);
     }).catch(()=>{
-        result.innerHTML = `<h3 class="error">Couldn't Find The Word</h3>`;
+        result.innerHTML = `<h3 class="error">No results found for <h3>${inpWord}</h3></h3>`;
     });
 });
-function playSound() {
-    sound.play();
-}
 
 //# sourceMappingURL=index.a903ddef.js.map

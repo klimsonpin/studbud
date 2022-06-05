@@ -1,20 +1,19 @@
 const url = "https://api.dictionaryapi.dev/api/v2/entries/en/";
 const result = document.getElementById("result");
-const sound = document.getElementById("sound");
 const btn = document.getElementById("search-btn");
 
+//The event listener checks for the input value then uses that value to fetch the definition from the dictionary API.
 btn.addEventListener("click", () => {
     let inpWord = document.getElementById("input-word").value;
     fetch(`${url}${inpWord}`)
         .then((response) => response.json())
         .then((data) => {
             console.log(data);
+            //Once the defintion is received the div class result inputs new html containing the word,meaning,details, and examples from the dictionaryAPI.
             result.innerHTML = `
             <div class="word">
                     <h3>${inpWord}</h3>
-                    <button onclick="playSound()">
-                        <i class="fas fa-volume-up"></i>
-                    </button>
+                
                 </div>
                 <div class="details">
                     <p>${data[0].meanings[0].partOfSpeech}</p>
@@ -29,9 +28,6 @@ btn.addEventListener("click", () => {
             sound.setAttribute("src", `https:${data[0].phonetics[0].audio}`);
         })
         .catch(() => {
-            result.innerHTML = `<h3 class="error">Couldn't Find The Word</h3>`;
+            result.innerHTML = `<h3 class="error">No results found for <h3>${inpWord}</h3></h3>`;
         });
 });
-function playSound() {
-    sound.play();
-}

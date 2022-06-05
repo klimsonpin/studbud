@@ -74,6 +74,17 @@ p {
   
 }
 
+.btn_stop:active {
+  background-color: black;
+}
+
+.btn_stop:hover {
+  background-color: #374151;
+}
+
+
+
+
 .btn:active {
   background-color: black;
 }
@@ -134,4 +145,8 @@ p {
 
 .pomo-buttons {
   text-align:center;
+}
+
+.buttons {
+  text-align: center;
 }

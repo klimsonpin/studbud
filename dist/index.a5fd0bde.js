@@ -463,7 +463,8 @@ var workSeconds = document.getElementById('work_seconds');
 var breakMinutes = document.getElementById('break_minutes');
 var breakSeconds = document.getElementById('break_seconds');
 var startTimer;
-//When the start button is pressed the function checks if startTimer = undefined and if it is then the timer will start. If the timer is running however then an alert will pop up notifying the user.
+//When the start_stop is pressed the function checks if startTimer = undefined and if it is then the timer will start. If the timer is running however then an alert will pop up notifying the user.
+//The inner.HTML of the start_stop will change to stop and when the button is pressed again the inner.HTML will change to start again.
 start.addEventListener('click', function() {
     if (startTimer === undefined) {
         startTimer = setInterval(timer, 1000);
@@ -475,6 +476,7 @@ start.addEventListener('click', function() {
     }
 });
 //When the reset button is pressed the innerText of workMinutes, workSeconds, breakMinutes, and breakSeconds change back to 25:00 and 5:00
+//The reset button when pressed also changes the inner.HTML of the start_stop button to start again.
 reset.addEventListener('click', function() {
     workMinutes.innerText = 25;
     workSeconds.innerText = "00";
